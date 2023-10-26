@@ -2,9 +2,9 @@
 # This script is displaying "Best School" 10 times
 
 num=0
-while [ $num -lt 10 ]
+while [ $num -lt 11 ]
 do
-	if [ $num = 8 ]; then
+	if [ $num = 9 ]; then
 		echo "Hi"
 	else
 		echo "Best School"
