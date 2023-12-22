@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 #Bash script that displays the content of the current directory
 
-
+for file in *
+do
+	if [ -f "$file" ]; then
+		echo "$file" | cut -d '-' -f2
+	fi
+done
