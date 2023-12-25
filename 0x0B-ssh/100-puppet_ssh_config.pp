@@ -7,5 +7,5 @@ file {
     content => "
             Host *
             PasswordAuthentication no     
-            IdentityFile ~/.ssh/school
+            IdentityFile ~/.ssh/school",
 }
