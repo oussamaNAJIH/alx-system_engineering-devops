@@ -4,9 +4,8 @@
 file {
     path   => '/etc/.ssh/config',
     ensure => present,
-    content => '
-        Host *
+    content => "
+            Host *
             PasswordAuthentication no     
             IdentityFile ~/.ssh/school
-    '
 }
