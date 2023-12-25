@@ -2,7 +2,7 @@
 # make changes to our configuration file using puppet
 
 file {
-    path   => 'ect/.ssh/config',
+    path   => 'ect/ssh/ssh_config',
     ensure => present,
     content => "
             Host *
