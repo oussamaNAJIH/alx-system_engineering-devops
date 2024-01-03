@@ -15,6 +15,6 @@ server {
 EOF
 
 sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
-sudo rm -f /etc/nginx/sites-enabled/default
+#sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t
 sudo systemctl reload nginx
