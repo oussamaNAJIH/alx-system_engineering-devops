@@ -14,14 +14,7 @@ server {
 }
 EOF
 
-# Create a symbolic link to enable the site
 sudo ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
-
-# Remove the default symlink to avoid conflicts
 sudo rm -f /etc/nginx/sites-enabled/default
-
-# Check Nginx configuration syntax
 sudo nginx -t
-
-# Reload Nginx to apply changes
 sudo systemctl reload nginx
