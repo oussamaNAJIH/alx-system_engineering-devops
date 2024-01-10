@@ -2,4 +2,4 @@
 # Nginx must be running, and listening on port 80
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
-echo "" | sudo dd status=none of=/run/nginx.pid
+sudo rm /run/nginx.pid
