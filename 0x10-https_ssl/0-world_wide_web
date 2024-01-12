@@ -1,0 +1,31 @@
+#!/bin/bash
+# Function to display information about a subdomain
+display_info() {
+    local subdomain="$1"
+    local domain="$2"
+
+    # Perform DNS query and extract relevant information using awk
+    dig_output=$(dig "$subdomain.$domain" +short)
+
+    if [ -n "$dig_output" ]; then
+        record_type=$(dig "$subdomain.$domain" | awk '/ANSWER SECTION:/ {getline; print $4}')
+        echo "The subdomain $subdomain is a $record_type record and points to $dig_output"
+    else
+        echo "The subdomain $subdomain does not exist."
+    fi
+}
+
+# Main script
+if [ "$#" -eq 1 ]; then
+    # Display information for default subdomains
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    for subdomain in "${subdomains[@]}"; do
+        display_info "$subdomain" "$1"
+    done
+elif [ "$#" -eq 2 ]; then
+    # Display information for the specified subdomain
+    display_info "$2" "$1"
+else
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
