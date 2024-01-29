@@ -10,7 +10,7 @@ import sys
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/users/"
     all_data_json = requests.get(url).json()
-    all_records = []
+    all_records = {}
     # Check if the correct number of command-line arguments is provided
     for key in all_data_json:
 
@@ -39,6 +39,6 @@ if __name__ == "__main__":
                 dict["completed"] = key.get("completed")
             list_tasks.append(dict)
         data_to_write[employee_id] = list_tasks
-        all_records.append(data_to_write)
+        all_records[employee_id] = data_to_write
     with open("todo_all_employees.json", "w") as file:
         json.dump(all_records, file)
