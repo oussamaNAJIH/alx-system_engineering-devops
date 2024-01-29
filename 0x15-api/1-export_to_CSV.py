@@ -31,10 +31,10 @@ if __name__ == "__main__":
 
     TOTAL_NUMBER_OF_TASKS = len(todo_data)
     with open(f"{employee_id}.csv", "a") as file:
-        csv_writer = csv.writer(file)
+        csv_writer = csv.writer(file, quoting=csv.QUOTE_ALL)
         for key in todo_data:
-            status = key.get("status")
+            status = key.get("completed")
             title = key.get("title")
-            data_to_append = [f"{employee_id}",
-                              f"{user_name}", f"{status}", title]
+            data_to_append = [employee_id,
+                              user_name, status, title]
             csv_writer.writerow(data_to_append)
