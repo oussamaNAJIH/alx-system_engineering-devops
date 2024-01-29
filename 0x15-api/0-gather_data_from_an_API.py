@@ -28,7 +28,9 @@ if __name__ == "__main__":
             list_titles.append(key.get("title"))
 
     TOTAL_NUMBER_OF_TASKS = len(todo_data)
-    print(f"Employee {EMPLOYEE_NAME} is \
-          done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
+    N = EMPLOYEE_NAME
+    D = NUMBER_OF_DONE_TASKS
+    T = TOTAL_NUMBER_OF_TASKS
+    print(f"Employee {N} is done with tasks({D}/{T}):")
     for title in list_titles:
         print(f"\t {title}")
