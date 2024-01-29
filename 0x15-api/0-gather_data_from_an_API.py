@@ -14,8 +14,6 @@ if __name__ == "__main__":
     params1 = {"id": employee_id}
     employee_data = requests.get(users_url, params=params1)
     employee_data_json = employee_data.json()
-    if isinstance(employee_data_json, list):
-        employee_data_json = employee_data_json[0]
     EMPLOYEE_NAME = employee_data_json.get("name")
 
     # Fetch employee's TODO list that means his NUMBER_OF_DONE_TASKS
