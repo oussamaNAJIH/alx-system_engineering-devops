@@ -29,11 +29,6 @@ if __name__ == "__main__":
         NUMBER_OF_DONE_TASKS = 0
         list_titles = []
         todo_data = requests.get(todos_url, params=params).json()
-        for key in todo_data:
-            if key.get("completed"):
-                NUMBER_OF_DONE_TASKS += 1
-                list_titles.append(key.get("title"))
-
         data_to_write = {}
         list_tasks = []
         for key in todo_data:
@@ -45,5 +40,5 @@ if __name__ == "__main__":
             list_tasks.append(dict)
         data_to_write[employee_id] = list_tasks
         all_records.append(data_to_write)
-    with open("todo_all_employees.json", "a") as file:
+    with open("todo_all_employees.json", "w") as file:
         json.dump(all_records, file)
