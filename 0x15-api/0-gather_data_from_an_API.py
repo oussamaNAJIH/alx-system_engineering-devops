@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
             for task in todos_json:
                 if task['completed']:
-                    print(f"\t{task.get('title')}")
+                    print(f"\t {task.get('title')}")
 
     except requests.exceptions.RequestException as e:
         print(f"Error during API request: {e}")
