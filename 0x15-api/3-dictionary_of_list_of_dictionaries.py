@@ -37,10 +37,11 @@ if __name__ == "__main__":
         data_to_write = {}
         list_tasks = []
         for key in todo_data:
-            dict = {}
-            dict["username"] = user_name
-            dict["task"] = key.get("title")
-            dict["completed"] = key.get("completed")
+            if key.get("userId") == employee_id:
+                dict = {}
+                dict["username"] = user_name
+                dict["task"] = key.get("title")
+                dict["completed"] = key.get("completed")
             list_tasks.append(dict)
         data_to_write[employee_id] = list_tasks
         all_records.append(data_to_write)
