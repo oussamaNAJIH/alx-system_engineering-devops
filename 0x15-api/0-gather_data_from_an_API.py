@@ -1,38 +1,36 @@
 #!/usr/bin/python3
 """
-A Script that, using this REST API, for a given employee ID,
+Python script that, using this REST API, for a given employee ID
 returns information about his/her TODO list progress
 """
-
 import requests
-from sys import argv
+import sys
 
 if __name__ == "__main__":
-    try:
-        # Check if the correct number of command-line arguments is provided
-        if len(argv) != 2:
-            print("Usage: script.py <employee_id>")
-            exit(1)
+    # Check if the correct number of command-line arguments is provided
+    employee_id = int(sys.argv[1])
+    # Fetch employee data that means his name
+    users_url = "https://jsonplaceholder.typicode.com/users"
+    params1 = {"id": employee_id}
+    employee_data = requests.get(users_url, params=params1)
+    employee_data_json = employee_data.json()
+    if isinstance(employee_data_json, list):
+        employee_data_json = employee_data_json[0]
+    EMPLOYEE_NAME = employee_data_json.get("name")
 
-        employee_id = argv[1]
-        todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
-        employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    # Fetch employee's TODO list that means his NUMBER_OF_DONE_TASKS
+    # and TOTAL_NUMBER_OF_TASKS
+    todos_url = "https://jsonplaceholder.typicode.com/todos"
+    params2 = {"userId": employee_id}
+    NUMBER_OF_DONE_TASKS = 0
+    list_titles = []
+    todo_data = requests.get(todos_url, params=params2).json()
+    for key in todo_data:
+        if key.get("completed"):
+            NUMBER_OF_DONE_TASKS += 1
+            list_titles.append(key.get("title"))
 
-        with requests.Session() as sessionReq:
-            employee_data = sessionReq.get(employee_url)
-            todos_data = sessionReq.get(todos_url)
-
-            employee_name = employee_data.json().get('name')
-            todos_json = todos_data.json()
-
-            NUMBER_OF_DONE_TASKS = sum(1 for task in todos_json if task['completed'])
-
-            print(f"Employee {employee_name} is done with tasks({NUMBER_OF_DONE_TASKS}/{len(todos_json)}):")
-
-            for task in todos_json:
-                if task['completed']:
-                    print(f"\t {task.get('title')}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error during API request: {e}")
-        exit(1)
+    TOTAL_NUMBER_OF_TASKS = len(todo_data)
+    print(f"Employee {EMPLOYEE_NAME} is done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
+    for title in list_titles:
+        print(f"\t {title}")
