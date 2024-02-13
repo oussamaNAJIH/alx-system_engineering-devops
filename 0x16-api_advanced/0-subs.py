@@ -1,11 +1,21 @@
 #!/usr/bin/python3
 """
-python file to returns the number of subscribers for a given subreddit
+Returns the number of subscribers for a given subreddit.
 """
+
 import requests
 
 
 def number_of_subscribers(subreddit):
+    """
+    Retrieve the number of subscribers for a given subreddit.
+
+    Args:
+        subreddit (str): The name of the subreddit.
+
+    Returns:
+        int: The number of subscribers if successful, otherwise 0.
+    """
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, headers=headers)
