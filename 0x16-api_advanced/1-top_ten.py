@@ -16,8 +16,9 @@ def top_ten(subreddit):
         data = response.json()
         posts = data['data']['children']
         if not posts:
-            return []
+            print("No posts found in this subreddit.")
         else:
-            return [post['data']['title'] for post in posts]
+            for post in posts:
+                print(post['data']['title'])
     else:
-        print(None)
+        print("Invalid subreddit.")
