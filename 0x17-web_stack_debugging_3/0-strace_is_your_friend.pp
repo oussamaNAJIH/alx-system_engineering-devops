@@ -1,7 +1,7 @@
-# Puppet manifest to fix Apache 500 error
-$file_path = '/var/www/html/wp-settings.php'
+# Puppet manifest to resolve Apache 500 Internal Server Error
+$target_file = '/var/www/html/wp-settings.php'
 
-exec { 'replace_line':
-  command => "sed -i 's/phpp/php/g' ${file_path}",
-  path    => ['/bin','/usr/bin']
+exec { 'edit_php_line':
+  command => "sed -i 's/phpp/php/g' ${target_file}",
+  path    => ['/bin', '/usr/bin']
 }
