@@ -9,7 +9,7 @@ def count_words(subreddit, word_list, after=None, counts=None):
     if counts is None:
         counts = {}
 
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    url = f"https://www.reddit.com/r/{subreddit.lower()}/hot.json"
     params = {'limit': 100, 'after': after}
     headers = {'User-Agent': 'Mozilla/5.0'}
     response = requests.get(url, params=params, headers=headers)
@@ -30,4 +30,4 @@ def count_words(subreddit, word_list, after=None, counts=None):
             for word, count in sorted_counts:
                 print(f"{word}: {count}")
     else:
-        print(None)
+        return
