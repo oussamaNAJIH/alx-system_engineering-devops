@@ -1,17 +1,9 @@
 # Puppet manifest to fix Apache 500 error
-class { 'apache':
-  default_mods => false,
-}
+$file_path = '/var/www/html/wp-settings.php'
 
-file { '/etc/apache2/sites-available/000-default.conf':
-  ensure  => file,
-  source  => 'puppet:///modules/mymodule/000-default.conf',
-  require => Class['apache'],
-  notify  => Service['apache2'],
-}
-
-service { 'apache2':
-  ensure  => running,
-  enable  => true,
-  require => Package['apache2'],
+file_line { 'replace_line':
+  path    => $file_path,
+  line    => '    define(\'DB_CHARSET\', \'utf8\');',
+  match   => '    define(\'DB_CHARSET\', \'utf-8\');',
+  ensure  => present,
 }
