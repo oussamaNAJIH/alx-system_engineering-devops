@@ -20,6 +20,10 @@ server {
 
     location / {
         include proxy_params;
-	    proxy_pass http://localhost:5003/;
+	    proxy_pass http://localhost:5003/2-hbnb/;
+    }
+
+    location /static {
+        alias web_dynamic/static/;
     }
 }
