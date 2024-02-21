@@ -1,13 +1,13 @@
-# This Puppet script enables the holberton user to login and open files without encountering errors.
+# Puppet manifest to adjust file limits for the specified user
 
-# Step 1: Increase the hard file limit for user holberton
-exec { 'increase_hard_file_limit_for_holberton_user':
-  command => 'sed -i "/holberton hard/s/5/50000/" /etc/security/limits.conf',
+# Step 1: Increase the hard file limit for the user
+exec { 'increase_hard_file_limit':
+  command => 'sed -i "/USERNAME hard/s/5/50000/" /etc/security/limits.conf',
   path    => '/usr/local/bin/:/bin/',
 }
 
-# Step 2: Increase the soft file limit for user holberton
-exec { 'increase_soft_file_limit_for_holberton_user':
-  command => 'sed -i "/holberton soft/s/4/50000/" /etc/security/limits.conf',
+# Step 2: Increase the soft file limit for the user
+exec { 'increase_soft_file_limit':
+  command => 'sed -i "/USERNAME soft/s/4/50000/" /etc/security/limits.conf',
   path    => '/usr/local/bin/:/bin/',
 }
